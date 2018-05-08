@@ -52,7 +52,7 @@ void loop() {
   if(valueNext > valueMid){
     valueMid = valueNext;
   } else {
-    directs((dir + 2) % 4);
+    directs(dir = (dir + 2) % 4);
     dir = dir + 1;
   }
 }
