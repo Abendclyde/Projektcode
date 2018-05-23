@@ -6,6 +6,7 @@
 // Libraries:
 #include <Arduino.h>
 #include <Stepper.h>
+#include <EEPROM.h>
 
 // Deklarierungen:
 const int SPU = 360;
@@ -48,6 +49,7 @@ void getSpeed(){
         if(change){
           if(velo < 10){
           velo++;
+          EEPROM.write(0, velo);
           } else {
             Serial.println("Reached Maximum!");
           }
@@ -62,6 +64,7 @@ void getSpeed(){
         if(change){
           if(velo > 1){
           velo--;
+          EEPROM.write(0, velo);
           } else {
             Serial.println("Reached Minimum!");
           }
@@ -148,6 +151,10 @@ void setup() {
   digitalWrite(SW_pin, HIGH);
   Serial.println("Started!");
   menu();
+  int veloEEPROM = EEPROM.read(0);
+  if(veloEEPROM != 0){
+    velo = veloEEPROM;
+  }
   }
 
 
