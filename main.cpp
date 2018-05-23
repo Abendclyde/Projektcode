@@ -151,7 +151,10 @@ void setup() {
   digitalWrite(SW_pin, HIGH);
   Serial.println("Started!");
   menu();
-  velo = EEPROM.read(0);
+  int veloEEPROM = EEPROM.read(0);
+  if(veloEEPROM != 0){
+      velo = veloEEPROM;
+  }
 }
 
 
